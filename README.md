@@ -1,5 +1,8 @@
 # Wordpress in Docker  
   
+![Wordpress in Docker](https://hadesblogcontent.blob.core.windows.net/media/2016/02/docker-wordpress.png)
+  
+  
 > The whole idea was to make starting new (or not new) WordPress project as easy as possible. **Wordpress in Docker** is a set of files to easily run WordPress in an isolated environment built with Docker containers. If you ever need something improved, added, or bugfixed, do not hesitate contacting me at [egolovan@s-pro.io](mailto:egolovan@s-pro.io).  
   
 ## What is inside:  
