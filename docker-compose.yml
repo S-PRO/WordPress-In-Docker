@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  
+  wordpress_db:
+    container_name: wordpress_db
+    hostname: wordpress_db
+    build: 
+      context: ./
+      dockerfile: Dockerfile.mysql
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - "3307:3306"
+    restart: always
+
+  phpmyadmin:
+      container_name: phpmyadmin
+      hostname: phpmyadmin
+      image: phpmyadmin/phpmyadmin
+      volumes:
+        - /sessions
+      environment:
+        - PMA_ARBITRARY=1
+        - PMA_HOST=wordpress_db
+        - PMA_PORT=3306
+        - PMA_USER=user 
+        - PMA_PASSWORD=password
+      ports:
+        - 8001:80
+      restart: always
+      
+  wordpress:
+    container_name: wordpress
+    build: ./
+    volumes:
+      - ./wordpress:/var/www/html
+    environment:
+      - MYSQL_HOST=wordpress_db
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - "8000:80"
+    depends_on:
+      - wordpress_db
+    restart: always
+
+volumes:
+    db_data:
