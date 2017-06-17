@@ -15,7 +15,6 @@ wp-content/themes/twenty*/
 
 !wp-content/uploads/.htaccess
 
-wp-config.php
 /license.txt
 /readme.html
 /sitemap.xml
